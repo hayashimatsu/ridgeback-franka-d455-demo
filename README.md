@@ -157,22 +157,17 @@ For capture `2026-0730-1`, the left camera world position is
 visible representative surface point in both camera coordinates
 `S_camera = (x_right, y_up, z_forward)` and world coordinates `S_world`.
 The two coordinate-frame expressions of the same range must satisfy:
-
-$$
-\lVert S_{camera}\rVert
-=
-\lVert S_{world}-C_{world}\rVert
-$$
-
+<br>
+```math
+\Vert S_{\text{camera}} \Vert = \Vert S_{\text{world}} - C_{\text{world}} \Vert
+```
+<br>
 The final column is the coordinate-frame closure error:
 
-$$
-e_{closure}=
-\left|
-\lVert S_{camera}\rVert-
-\lVert S_{world}-C_{world}\rVert
-\right|
-$$
+```math
+e_{\text{closure}} = \left| \Vert S_{\text{camera}} \Vert - \Vert S_{\text{world}} - C_{\text{world}} \Vert \right|
+```
+<br>
 
 | Target · post-detection GUI label | Pixel `(u,v)` | `S_camera` XYZ (m) | `S_world` XYZ (m) | Camera range (m) | World range (m) | Closure error (mm) |
 |---|---:|---|---|---:|---:|---:|
