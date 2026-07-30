@@ -1,0 +1,147 @@
+{
+  "schema": "d455-demo-capture-v1",
+  "status": "pass",
+  "failures": [],
+  "run_id": "2026-0730-1",
+  "timestamp_utc": "20260729T235906058290Z",
+  "daily_sequence": 1,
+  "label": null,
+  "stage": {
+    "path": "scenes/ridgeback_franka_d455_demo.usd",
+    "sha256_before": "b328311018e67cfde017821c46e4308b199c9776f3135164c83813600daf0562",
+    "sha256_after": "b328311018e67cfde017821c46e4308b199c9776f3135164c83813600daf0562",
+    "unchanged_during_capture": true
+  },
+  "output_directory": "outputs/captures/2026-0730-1",
+  "resolution": {
+    "width": 640,
+    "height": 480
+  },
+  "timeline_playing": true,
+  "ik_settle": {
+    "settled": true,
+    "frames": 5,
+    "controller_status": {
+      "running": true,
+      "step_count": 1046,
+      "error_count": 0,
+      "last_error": {
+        "pos_error_norm": 0.0018391741905361414,
+        "rot_error_norm": 0.0007665619649018337
+      }
+    }
+  },
+  "ik_target_hidden_during_capture": true,
+  "ik_target_visibility_after_capture": "inherited",
+  "render_method": "app_update_fallback",
+  "rgb_readback": {
+    "left": {
+      "mean_at_each_attempt": [
+        198.26660264756944
+      ],
+      "retries": 0,
+      "valid": true
+    },
+    "right": {
+      "mean_at_each_attempt": [
+        197.94456488715278
+      ],
+      "retries": 0,
+      "valid": true
+    },
+    "color": {
+      "mean_at_each_attempt": [
+        197.302158203125
+      ],
+      "retries": 0,
+      "valid": true
+    }
+  },
+  "camera_frames": {
+    "left": {
+      "position_m": [
+        0.6576365828514099,
+        0.3605782091617584,
+        1.17161226272583
+      ],
+      "right": [
+        0.005922535080177966,
+        -0.9999794828823018,
+        0.0024407770624042505
+      ],
+      "up": [
+        0.01990568981395005,
+        0.002558258830697422,
+        0.9997985891292235
+      ],
+      "forward": [
+        0.9997843198765058,
+        0.0058727275528649425,
+        -0.019920461846116448
+      ]
+    },
+    "right": {
+      "position_m": [
+        0.6551569104194641,
+        0.2655622959136963,
+        1.1719048023223877
+      ],
+      "right": [
+        0.005922535080177966,
+        -0.9999794828823018,
+        0.0024407770624042505
+      ],
+      "up": [
+        0.01990568981395005,
+        0.002558258830697422,
+        0.9997985891292235
+      ],
+      "forward": [
+        0.9997843198765058,
+        0.0058727275528649425,
+        -0.019920461846116448
+      ]
+    },
+    "color": {
+      "position_m": [
+        0.6549437046051025,
+        0.301561564207077,
+        1.1718171834945679
+      ],
+      "right": [
+        0.005922535080177966,
+        -0.9999794828823018,
+        0.0024407770624042505
+      ],
+      "up": [
+        0.01990568981395005,
+        0.002558258830697422,
+        0.9997985891292235
+      ],
+      "forward": [
+        0.9997843198765058,
+        0.0058727275528649425,
+        -0.019920461846116448
+      ]
+    }
+  },
+  "stereo_baseline_m": 0.09504871448446094,
+  "depth": {
+    "axial_semantics": "distance_to_image_plane",
+    "radial_semantics": "distance_to_camera",
+    "left_valid_pixel_count": 175193
+  },
+  "setup": {
+    "status": "already_setup",
+    "stage_id": 9223002
+  },
+  "measurement": {
+    "status": "pass",
+    "capture_id": "2026-0730-1",
+    "sensor_region_count": 9,
+    "reported_target_count": 8,
+    "excluded_environment_region_count": 1,
+    "output": "outputs/captures/2026-0730-1/measurements.json",
+    "summary_output": "outputs/captures/2026-0730-1/summary.json"
+  }
+}

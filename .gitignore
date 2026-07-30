@@ -1,0 +1,14 @@
+# Isaac Sim and Python runtime state
+.claude/
+__pycache__/
+*.py[cod]
+
+# Demo captures are reproducible runtime output. Keep one reviewed reference.
+outputs/*
+!outputs/captures/
+outputs/captures/*
+!outputs/captures/2026-0730-1/
+!outputs/captures/2026-0730-1/**
+
+# Validation scratch; only reviewed golden evidence is committed.
+validation/tmp/

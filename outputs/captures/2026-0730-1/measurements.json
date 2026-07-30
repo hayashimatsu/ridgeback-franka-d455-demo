@@ -1,0 +1,1244 @@
+{
+  "schema": "d455-reported-targets-v3",
+  "status": "pass",
+  "capture_id": "2026-0730-1",
+  "capture_timestamp_utc": "20260729T235906058290Z",
+  "stage": {
+    "path": "scenes/ridgeback_franka_d455_demo.usd",
+    "sha256_before": "b328311018e67cfde017821c46e4308b199c9776f3135164c83813600daf0562",
+    "sha256_after": "b328311018e67cfde017821c46e4308b199c9776f3135164c83813600daf0562",
+    "unchanged_during_capture": true
+  },
+  "method": {
+    "primary_input": "depth_axial_left.npy",
+    "region_membership_output": "depth_region_labels.npy",
+    "uses_rgb": false,
+    "uses_usd_oracle": false,
+    "minimum_depth_m": 0.05,
+    "maximum_depth_m": 5.0,
+    "minimum_pixels": 64,
+    "discontinuity_absolute_m": 0.02,
+    "discontinuity_relative": 0.025,
+    "large_region_plane_split": {
+      "horizontal_abs_world_normal_z_minimum": 0.85,
+      "vertical_abs_world_normal_z_maximum": 0.25,
+      "minimum_plane_pixels": 500
+    },
+    "environment_floor_exclusion": {
+      "requires_likely_floor_normal_class": true,
+      "maximum_absolute_median_world_z_m": 0.15,
+      "uses_usd_oracle": false
+    },
+    "semantics": "Depth-continuous visible surfaces, not semantic object instances."
+  },
+  "camera": {
+    "name": "left",
+    "world_position_xyz_m": [
+      0.6576365828514099,
+      0.3605782091617584,
+      1.17161226272583
+    ],
+    "right_world_unit": [
+      0.005922535080177966,
+      -0.9999794828823018,
+      0.0024407770624042505
+    ],
+    "up_world_unit": [
+      0.01990568981395005,
+      0.002558258830697422,
+      0.9997985891292235
+    ],
+    "forward_world_unit": [
+      0.9997843198765058,
+      0.0058727275528649425,
+      -0.019920461846116448
+    ],
+    "coordinate_convention": {
+      "x": "image right",
+      "y": "image up",
+      "z": "camera forward"
+    },
+    "intrinsics_px": {
+      "fx": 307.7776730991483,
+      "fy": 307.7776730991483,
+      "cx": 320.0,
+      "cy": 240.0,
+      "source": "empirical RTX 640x480 calibration"
+    }
+  },
+  "sensor_region_count": 9,
+  "reported_target_count": 8,
+  "excluded_environment_region_count": 1,
+  "reported_targets_near_to_far": [
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          574.0,
+          401.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 495,
+        "bbox_px": [
+          561,
+          389,
+          587,
+          412
+        ],
+        "centroid_px": [
+          574.3818181818182,
+          400.6060606060606
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.001611328125,
+        "representative_pixel_px": [
+          574.0,
+          401.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 1
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": 0.3508235045739588,
+          "y_up": -0.22237237888349357,
+          "z_forward": 0.4251009523868561
+        },
+        "surface_world_xyz": [
+          1.080297138327903,
+          0.011689518448783829,
+          0.9416727467169503
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 0.5943378045960652,
+        "representative_axial_z_forward": 0.4251009523868561,
+        "surface_to_world_origin": 1.433152508922364
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            0.3451634658724466,
+            -0.2405079981901134,
+            0.420980304479599
+          ],
+          "maximum_xyz": [
+            0.3713503521819148,
+            -0.21202796851043998,
+            0.44790637493133545
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            1.076136918294563,
+            -0.00880545608808627,
+            0.9233911349287248
+          ],
+          "maximum_xyz": [
+            1.1030044364390026,
+            0.01739660443728569,
+            0.9518403774799049
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 0.420980304479599,
+          "p02": 0.4215944445133209,
+          "median": 0.4276440143585205,
+          "p98": 0.44090619921684265,
+          "maximum": 0.44790637493133545
+        },
+        "euclidean_camera_range": {
+          "minimum": 0.5942897779813061,
+          "p02": 0.5945945674319445,
+          "median": 0.5988365177530098,
+          "p98": 0.6074650741657952,
+          "maximum": 0.6125104083517947
+        },
+        "robust_axial_span_p02_to_p98": 0.019311754703521755
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 1,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-001",
+      "near_to_far_rank": 1,
+      "target_rank": 1
+    },
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          358.0,
+          288.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 1109,
+        "bbox_px": [
+          342,
+          271,
+          374,
+          304
+        ],
+        "centroid_px": [
+          357.9639314697926,
+          287.5455365193868
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.0036100260416666668,
+        "representative_pixel_px": [
+          358.0,
+          288.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 2
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": 0.07615321710379695,
+          "y_up": -0.09619353739426983,
+          "z_forward": 0.6167963147163391
+        },
+        "surface_world_xyz": [
+          1.272836088244709,
+          0.2878027432479252,
+          1.063337105327093
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 0.6288801181142063,
+        "representative_axial_z_forward": 0.6167963147163391,
+        "surface_to_world_origin": 1.6833383278843634
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            0.046616917177752314,
+            -0.12842104765946818,
+            0.6160687804222107
+          ],
+          "maximum_xyz": [
+            0.10839906826237868,
+            -0.06663418750505204,
+            0.6627646088600159
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            1.2728124657523243,
+            0.25558257980745624,
+            1.0310321408207241
+          ],
+          "maximum_xyz": [
+            1.3195671176214225,
+            0.31734629225270505,
+            1.0919309137606485
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 0.6160687804222107,
+          "p02": 0.6161855745315552,
+          "median": 0.6169170141220093,
+          "p98": 0.6618149948120117,
+          "maximum": 0.6627646088600159
+        },
+        "euclidean_camera_range": {
+          "minimum": 0.6220244947638751,
+          "p02": 0.6231945413965406,
+          "median": 0.6306890710544424,
+          "p98": 0.6679755635407255,
+          "maximum": 0.6747635537596252
+        },
+        "robust_axial_span_p02_to_p98": 0.04562942028045647
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 2,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-002",
+      "near_to_far_rank": 2,
+      "target_rank": 2
+    },
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          471.0,
+          190.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 987,
+        "bbox_px": [
+          453,
+          174,
+          489,
+          207
+        ],
+        "centroid_px": [
+          470.8996960486322,
+          190.30293819655523
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.003212890625,
+        "representative_pixel_px": [
+          471.0,
+          190.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 3
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": 0.4368906165389062,
+          "y_up": 0.14466576706586298,
+          "z_forward": 0.8904978632926941
+        },
+        "surface_world_xyz": [
+          1.5534095553435403,
+          -0.07070369982732476,
+          1.2995761164194342
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 1.0023911609293819,
+        "representative_axial_z_forward": 0.8904978632926941,
+        "surface_to_world_origin": 2.0265681193016203
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            0.4076769518017121,
+            0.09969443022052651,
+            0.8834070563316345
+          ],
+          "maximum_xyz": [
+            0.5032641251931655,
+            0.1982146613643014,
+            0.947833776473999
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            1.5465270082188305,
+            -0.13692738852935668,
+            1.253877802646701
+          ],
+          "maximum_xyz": [
+            1.6109407153204918,
+            -0.04126366268940484,
+            1.3524513899849182
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 0.8834070563316345,
+          "p02": 0.8853664994239807,
+          "median": 0.9005618095397949,
+          "p98": 0.9418677186965942,
+          "maximum": 0.947833776473999
+        },
+        "euclidean_camera_range": {
+          "minimum": 1.0008931880263456,
+          "p02": 1.0019376484091733,
+          "median": 1.0156501633868447,
+          "p98": 1.047307594339656,
+          "maximum": 1.0566385710524995
+        },
+        "robust_axial_span_p02_to_p98": 0.056501219272613534
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 3,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-003",
+      "near_to_far_rank": 3,
+      "target_rank": 3
+    },
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          300.0,
+          358.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 1864,
+        "bbox_px": [
+          281,
+          333,
+          318,
+          382
+        ],
+        "centroid_px": [
+          299.8202789699571,
+          357.6598712446352
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.006067708333333333,
+        "representative_pixel_px": [
+          300.0,
+          358.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 4
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": -0.08135639644087932,
+          "y_up": -0.480002739001188,
+          "z_forward": 1.2519841194152832
+        },
+        "surface_world_xyz": [
+          1.8993140524328829,
+          0.44805752679190713,
+          0.6665675267852108
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 1.3433114783841276,
+        "representative_axial_z_forward": 1.2519841194152832,
+        "surface_to_world_origin": 2.0621497726519413
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            -0.15972352123822117,
+            -0.5786074866765978,
+            1.2505313158035278
+          ],
+          "maximum_xyz": [
+            -0.008126199039789858,
+            -0.42088973751480263,
+            1.394032597541809
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            1.8992455085119215,
+            0.3746050691337885,
+            0.5678506077480001
+          ],
+          "maximum_xyz": [
+            2.0429300012867726,
+            0.5272395931451047,
+            0.7226758101125462
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 1.2505313158035278,
+          "p02": 1.2508558702468873,
+          "median": 1.252870500087738,
+          "p98": 1.3800968742370605,
+          "maximum": 1.394032597541809
+        },
+        "euclidean_camera_range": {
+          "minimum": 1.321326561132079,
+          "p02": 1.3244621984163023,
+          "median": 1.3568973875759514,
+          "p98": 1.4491023925556872,
+          "maximum": 1.463704828986675
+        },
+        "robust_axial_span_p02_to_p98": 0.12924100399017324
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 4,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-004",
+      "near_to_far_rank": 4,
+      "target_rank": 4
+    },
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          406.0,
+          366.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 81,
+        "bbox_px": [
+          401,
+          362,
+          410,
+          371
+        ],
+        "centroid_px": [
+          405.7037037037037,
+          366.358024691358
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.000263671875,
+        "representative_pixel_px": [
+          406.0,
+          366.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 5
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": 0.5380535725747749,
+          "y_up": -0.7883110481909493,
+          "z_forward": 1.9255915880203247
+        },
+        "surface_world_xyz": [
+          2.5703076249966212,
+          -0.16817255303037895,
+          0.346414584007463
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 2.1491484172841644,
+        "representative_axial_z_forward": 1.9255915880203247,
+        "surface_to_world_origin": 2.598993335643936
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            0.51396236311357,
+            -0.8232481350583237,
+            1.9214061498641968
+          ],
+          "maximum_xyz": [
+            0.5671701337598132,
+            -0.7708830760389153,
+            1.9560452699661255
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            2.5659387081868577,
+            -0.19720488954489263,
+            0.31135001052355216
+          ],
+          "maximum_xyz": [
+            2.6003633699734925,
+            -0.14394998965514427,
+            0.3634702943884464
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 1.9214061498641968,
+          "p02": 1.9221043586730957,
+          "median": 1.932490348815918,
+          "p98": 1.9553361177444457,
+          "maximum": 1.9560452699661255
+        },
+        "euclidean_camera_range": {
+          "minimum": 2.1491484172841644,
+          "p02": 2.1493123831209986,
+          "median": 2.1574384088715197,
+          "p98": 2.1756573651743225,
+          "maximum": 2.1777471669380897
+        },
+        "robust_axial_span_p02_to_p98": 0.03323175907135001
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 5,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-005",
+      "near_to_far_rank": 5,
+      "target_rank": 5
+    },
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          80.0,
+          115.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 509,
+        "bbox_px": [
+          67,
+          105,
+          94,
+          126
+        ],
+        "centroid_px": [
+          80.42632612966601,
+          115.44597249508841
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.0016569010416666668,
+        "representative_pixel_px": [
+          80.0,
+          115.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 7
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": -1.5726393667164573,
+          "y_up": 0.8190830034981549,
+          "z_forward": 2.016763687133789
+        },
+        "surface_world_xyz": [
+          2.680955694525765,
+          1.9471246398510533,
+          1.9465169678271148
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 2.685410083042695,
+        "representative_axial_z_forward": 2.016763687133789,
+        "surface_to_world_origin": 3.842882525548249
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            -1.6577066038837807,
+            0.7821355644630348,
+            2.015427350997925
+          ],
+          "maximum_xyz": [
+            -1.554249451444026,
+            0.8862135472160282,
+            2.117863416671753
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            2.6809233952518956,
+            1.9293025030839535,
+            1.9094914062888593
+          ],
+          "maximum_xyz": [
+            2.7809180855108298,
+            2.0322729557183083,
+            2.0120579658839763
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 2.015427350997925,
+          "p02": 2.0156681823730467,
+          "median": 2.0191051959991455,
+          "p98": 2.11737096786499,
+          "maximum": 2.117863416671753
+        },
+        "euclidean_camera_range": {
+          "minimum": 2.6673559702771623,
+          "p02": 2.6740341799639378,
+          "median": 2.7150477081727833,
+          "p98": 2.770449145218336,
+          "maximum": 2.7938142960155417
+        },
+        "robust_axial_span_p02_to_p98": 0.10170278549194345
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 7,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-007",
+      "near_to_far_rank": 7,
+      "target_rank": 6
+    },
+    {
+      "surface_kind": "depth_region",
+      "role_hint": "bounded_surface_candidate",
+      "semantic_hint": "object_candidate",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "depth-connected visible surface not meeting the environment-floor exclusion rule"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          332.0,
+          100.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 232,
+        "bbox_px": [
+          325,
+          92,
+          340,
+          109
+        ],
+        "centroid_px": [
+          332.4008620689655,
+          100.14655172413794
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.0007552083333333333,
+        "representative_pixel_px": [
+          332.0,
+          100.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 8
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": 0.10841088005644917,
+          "y_up": 1.2647936006585736,
+          "z_forward": 2.7805373668670654
+        },
+        "surface_world_xyz": [
+          3.463392899409395,
+          0.27173456118816025,
+          2.381026138464923
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 3.056606585696878,
+        "representative_axial_z_forward": 2.7805373668670654,
+        "surface_to_world_origin": 4.211676093846335
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            0.045795103355324,
+            1.2180283777999552,
+            2.774137496948242
+          ],
+          "maximum_xyz": [
+            0.1838062340006287,
+            1.3540977232463203,
+            2.8678929805755615
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            3.457526622920719,
+            0.1966317285167705,
+            2.333091178857261
+          ],
+          "maximum_xyz": [
+            3.5498162825227837,
+            0.33465616918060725,
+            2.4695431541599073
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 2.774137496948242,
+          "p02": 2.7756412649154663,
+          "median": 2.7985358238220215,
+          "p98": 2.8642575120925904,
+          "maximum": 2.8678929805755615
+        },
+        "euclidean_camera_range": {
+          "minimum": 3.0561471706410956,
+          "p02": 3.0571024860482807,
+          "median": 3.0785927029020748,
+          "p98": 3.1231098711240852,
+          "maximum": 3.1342922213572297
+        },
+        "robust_axial_span_p02_to_p98": 0.08861624717712413
+      },
+      "surface_model": {
+        "kind": "sampled_visible_surface",
+        "exact_samples": {
+          "depth_file": "depth_axial_left.npy",
+          "region_label_file": "depth_region_labels.npy",
+          "region_label_value": 8,
+          "reconstruction": "Select pixels with this label and back-project axial depth using the report camera intrinsics and basis."
+        }
+      },
+      "region_id": "depth-region-008",
+      "near_to_far_rank": 8,
+      "target_rank": 7
+    },
+    {
+      "surface_kind": "plane",
+      "role_hint": "vertical_plane_candidate",
+      "semantic_hint": "likely_wall",
+      "classification": {
+        "reporting_category": "reported_target",
+        "basis": "vertical world-space surface normal"
+      },
+      "representative_point": {
+        "definition": "Valid region pixel nearest the 2D mask centroid; this is a visible surface point, not the object center.",
+        "pixel_px": [
+          285.0,
+          197.0
+        ]
+      },
+      "visibility": {
+        "pixel_count": 52015,
+        "bbox_px": [
+          192,
+          58,
+          382,
+          343
+        ],
+        "centroid_px": [
+          284.8391041045852,
+          197.07701624531384
+        ],
+        "touches_image_border": false,
+        "image_border_margin_px": 2,
+        "image_fraction": 0.16931966145833333,
+        "representative_pixel_px": [
+          285.0,
+          197.0
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 9
+        }
+      },
+      "coordinates_m": {
+        "surface_camera_xyz": {
+          "x_right": -0.37718117929332357,
+          "y_up": 0.46339402027465465,
+          "z_forward": 3.316798448562622
+        },
+        "surface_world_xyz": [
+          3.9807099727783197,
+          0.7584157852650663,
+          1.5679201782907088
+        ]
+      },
+      "distance_m": {
+        "camera_to_representative_surface": 3.3701856934636147,
+        "representative_axial_z_forward": 3.316798448562622,
+        "surface_to_world_origin": 4.345068477735094
+      },
+      "visible_surface_extent_m": {
+        "camera_axis_aligned": {
+          "minimum_xyz": [
+            -1.3835755233023779,
+            -1.1195032691010016,
+            3.282268524169922
+          ],
+          "maximum_xyz": [
+            0.6628792590060456,
+            1.9477521194460705,
+            3.3530209064483643
+          ]
+        },
+        "world_axis_aligned": {
+          "minimum_xyz": [
+            3.9796204712164744,
+            -0.2848928719280918,
+            -0.014303940885217303
+          ],
+          "maximum_xyz": [
+            3.9817485477299135,
+            1.7609739401335467,
+            3.050014243771497
+          ]
+        }
+      },
+      "surface_depth_profile_m": {
+        "axial_z_forward": {
+          "minimum": 3.282268524169922,
+          "p02": 3.2872097301483154,
+          "median": 3.316455125808716,
+          "p98": 3.3478260803222657,
+          "maximum": 3.3530209064483643
+        },
+        "euclidean_camera_range": {
+          "minimum": 3.3229116655276902,
+          "p02": 3.328716512223843,
+          "median": 3.4973253363658245,
+          "p98": 3.8920794324220407,
+          "maximum": 4.064412437405205
+        },
+        "robust_axial_span_p02_to_p98": 0.060616350173950284
+      },
+      "surface_model": {
+        "kind": "plane",
+        "normal_world_unit": [
+          -0.9999998158099891,
+          -0.00017143038612169934,
+          0.0005822298606697899
+        ],
+        "point_world_xyz_m": [
+          3.980720118046631,
+          0.7694216876755497,
+          1.5789122929140929
+        ],
+        "equation": {
+          "form": "dot(normal_world_unit, world_xyz) = offset_m",
+          "offset_m": -3.9799319972104445
+        },
+        "camera_perpendicular_distance_m": 3.3229158690719864,
+        "constant_world_axis": {
+          "axis": "x",
+          "surface_value_m": 3.980720118046631,
+          "median_absolute_deviation_m": 0.00043995735124680024,
+          "normal_axis_alignment": 0.9999998158099891
+        }
+      },
+      "region_id": "depth-region-009",
+      "near_to_far_rank": 9,
+      "target_rank": 8
+    }
+  ],
+  "excluded_environment_regions": [
+    {
+      "region_id": "depth-region-006",
+      "semantic_hint": "likely_floor",
+      "exclusion_reason": "Known environment floor; retained only in the raw region label evidence and excluded from target reporting.",
+      "visibility": {
+        "pixel_count": 96930,
+        "bbox_px": [
+          1,
+          307,
+          638,
+          478
+        ],
+        "region_mask": {
+          "file": "depth_region_labels.npy",
+          "encoding": "uint16 label image aligned to the left camera",
+          "label_value": 6
+        }
+      }
+    }
+  ],
+  "raw_evidence": {
+    "axial_depth": "depth_axial_left.npy",
+    "radial_depth": "depth_radial_left.npy",
+    "region_labels": "depth_region_labels.npy",
+    "left_rgb": "rgb_left.png"
+  },
+  "oracle_policy": {
+    "purpose": "GUI name and authored-center validation only",
+    "used_for_detection": false,
+    "unseen_stage_objects_are_recorded": false,
+    "records_location": "post_detection_gui_validation"
+  },
+  "post_detection_gui_validation": [
+    {
+      "surface_id": "depth-region-001",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_sphere_00_red",
+      "shape": "sphere",
+      "authored_center_world_xyz_m": [
+        1.0910830435618213,
+        0.012544540366234324,
+        0.9424486777248098
+      ],
+      "surface_point_to_authored_center_m": 0.01084752889479189
+    },
+    {
+      "surface_id": "depth-region-002",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_cube_01_springgreen",
+      "shape": "cube",
+      "authored_center_world_xyz_m": [
+        1.3028652095891502,
+        0.28768464202462746,
+        1.062831267055042
+      ],
+      "surface_point_to_authored_center_m": 0.030033613651633612
+    },
+    {
+      "surface_id": "depth-region-003",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_sphere_02_rose",
+      "shape": "sphere",
+      "authored_center_world_xyz_m": [
+        1.596304658381761,
+        -0.0783196876610824,
+        1.2987368646923994
+      ],
+      "surface_point_to_authored_center_m": 0.04357404593109125
+    },
+    {
+      "surface_id": "depth-region-004",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_cube_03_yellow",
+      "shape": "cube",
+      "authored_center_world_xyz_m": [
+        1.9745797743710394,
+        0.445499963867252,
+        0.6577915620707444
+      ],
+      "surface_point_to_authored_center_m": 0.07581878120660489
+    },
+    {
+      "surface_id": "depth-region-005",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_sphere_04_azure",
+      "shape": "sphere",
+      "authored_center_world_xyz_m": [
+        2.5958921520631355,
+        -0.16032897949593194,
+        0.35381392578989856
+      ],
+      "surface_point_to_authored_center_m": 0.027764004210862222
+    },
+    {
+      "surface_id": "depth-region-007",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_cube_05_violet",
+      "shape": "cube",
+      "authored_center_world_xyz_m": [
+        2.7307068988447525,
+        1.930611493555134,
+        1.9335677047237865
+      ],
+      "surface_point_to_authored_center_m": 0.05399583082701207
+    },
+    {
+      "surface_id": "depth-region-008",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/phase5_sphere_06_chartreuse",
+      "shape": "sphere",
+      "authored_center_world_xyz_m": [
+        3.5302745845414147,
+        0.26477931332330557,
+        2.3664004190287438
+      ],
+      "surface_point_to_authored_center_m": 0.06881458383210638
+    },
+    {
+      "surface_id": "depth-region-009",
+      "source": "post_measurement_usd_nearest_center",
+      "used_for_depth_detection": false,
+      "prim_path": "/World/wall",
+      "shape": "cube",
+      "authored_center_world_xyz_m": [
+        4.030432616995313,
+        0.7245797202939723,
+        1.5
+      ],
+      "surface_point_to_authored_center_m": 0.09072139361638712
+    }
+  ],
+  "user_validation_guide": {
+    "gui_translate_semantics": "A prim's GUI Translate is its world-space origin or center, not camera distance.",
+    "measurement_semantics": "The representative distance and XYZ refer to one visible surface sample, never the hidden object center. Use the extent, depth profile, and region label mask for the full visible surface.",
+    "plane_comparison": "Use point_world_xyz_m and the plane equation for any plane. For an axis-aligned plane, compare constant_world_axis with the matching GUI surface coordinate, not automatically with the prim center. Account for half thickness."
+  },
+  "limitations": [
+    "Touching surfaces without a measurable depth discontinuity may merge.",
+    "Curved or steeply sloped surfaces may split if thresholds are too strict.",
+    "A region is a visible surface and does not by itself identify an object class."
+  ],
+  "visual_validation": {
+    "pixel_coordinate_origin": "top-left",
+    "pixel_axes": {
+      "u": "right",
+      "v": "down"
+    },
+    "target_selection": "reported_targets_near_to_far only; known floor regions are excluded",
+    "rgb_markers": "rgb_left_annotated.png",
+    "depth_markers": "depth_preview_annotated.png",
+    "target_overlay": "region_overlay.png",
+    "marker_legend": [
+      {
+        "target_rank": 1,
+        "surface_id": "depth-region-001",
+        "representative_pixel_px": [
+          574.0,
+          401.0
+        ],
+        "representative_axial_depth_m": 0.4251009523868561,
+        "rgb_marker_label": "T1",
+        "depth_marker_label": "T1 0.425 m"
+      },
+      {
+        "target_rank": 2,
+        "surface_id": "depth-region-002",
+        "representative_pixel_px": [
+          358.0,
+          288.0
+        ],
+        "representative_axial_depth_m": 0.6167963147163391,
+        "rgb_marker_label": "T2",
+        "depth_marker_label": "T2 0.617 m"
+      },
+      {
+        "target_rank": 3,
+        "surface_id": "depth-region-003",
+        "representative_pixel_px": [
+          471.0,
+          190.0
+        ],
+        "representative_axial_depth_m": 0.8904978632926941,
+        "rgb_marker_label": "T3",
+        "depth_marker_label": "T3 0.890 m"
+      },
+      {
+        "target_rank": 4,
+        "surface_id": "depth-region-004",
+        "representative_pixel_px": [
+          300.0,
+          358.0
+        ],
+        "representative_axial_depth_m": 1.2519841194152832,
+        "rgb_marker_label": "T4",
+        "depth_marker_label": "T4 1.252 m"
+      },
+      {
+        "target_rank": 5,
+        "surface_id": "depth-region-005",
+        "representative_pixel_px": [
+          406.0,
+          366.0
+        ],
+        "representative_axial_depth_m": 1.9255915880203247,
+        "rgb_marker_label": "T5",
+        "depth_marker_label": "T5 1.926 m"
+      },
+      {
+        "target_rank": 6,
+        "surface_id": "depth-region-007",
+        "representative_pixel_px": [
+          80.0,
+          115.0
+        ],
+        "representative_axial_depth_m": 2.016763687133789,
+        "rgb_marker_label": "T6",
+        "depth_marker_label": "T6 2.017 m"
+      },
+      {
+        "target_rank": 7,
+        "surface_id": "depth-region-008",
+        "representative_pixel_px": [
+          332.0,
+          100.0
+        ],
+        "representative_axial_depth_m": 2.7805373668670654,
+        "rgb_marker_label": "T7",
+        "depth_marker_label": "T7 2.781 m"
+      },
+      {
+        "target_rank": 8,
+        "surface_id": "depth-region-009",
+        "representative_pixel_px": [
+          285.0,
+          197.0
+        ],
+        "representative_axial_depth_m": 3.316798448562622,
+        "rgb_marker_label": "T8",
+        "depth_marker_label": "T8 3.317 m"
+      }
+    ],
+    "depth_marker_value": "representative axial Z-forward depth in metres at the same pixel marked in rgb_left_annotated.png"
+  }
+}
