@@ -1,7 +1,12 @@
 # Ridgeback + Franka Panda + D455 GUI Demo
 
 <p align="center">
-  <img src="outputs/captures/2026-0730-1/rgb_left_annotated.png" width="820" alt="D455 RGB view with representative target pixels">
+  <img src="demo1.png" width="49%" alt="Isaac Sim scene with Ridgeback, Franka Panda, wall, and measurement targets">
+  <img src="demo2.png" width="49%" alt="Close view of the wrist-mounted Intel RealSense D455 model">
+</p>
+
+<p align="center">
+  <sub><strong>Left:</strong> complete simulated workspace and measurement targets. <strong>Right:</strong> D455 stereo camera mounted above the Panda hand.</sub>
 </p>
 
 <p align="center">
@@ -38,6 +43,27 @@ capture completed with zero controller errors and left the USD unchanged.
 - Color-independent visible-surface grouping from depth discontinuities.
 - Camera-space and world-space surface coordinates with near/median/far depth.
 - Operator overlays that make every reported measurement visually auditable.
+
+## What the D455 simulation represents
+
+The wrist accessory is an Intel RealSense D455 geometry and camera model in
+Isaac Sim. It contains separate left, right, and color camera prims and preserves
+a measured left-to-right baseline of approximately `0.095 m`. The camera moves
+with the Panda hand, so every capture records its runtime world position and its
+right, up, and forward basis vectors.
+
+This demo reads two RTX-rendered depth products from the left camera:
+
+- `distance_to_image_plane` supplies axial depth along camera Z-forward and is
+  saved as `depth_axial_left.npy`.
+- `distance_to_camera` supplies radial range and is saved as
+  `depth_radial_left.npy`.
+
+The current pipeline therefore tests camera geometry, visibility, coordinate
+conversion, and depth-surface reporting. It does **not** simulate the physical
+D455 stereo-disparity algorithm, firmware processing, quantization, optical
+noise, or material-dependent hardware failure modes. This distinction defines
+which accuracy claims can be made from the reference capture.
 
 ## Requirements and installation
 
@@ -134,8 +160,65 @@ demo_manifest.yaml
 
 ## Measurement limits
 
+### Coordinate and distance result
+
+For capture `2026-0730-1`, the left camera world position is
+`C_world = (0.657637, 0.360578, 1.171612) m`. Each reported target provides one
+visible representative surface point in both camera coordinates
+`S_camera = (x_right, y_up, z_forward)` and world coordinates `S_world`.
+The two coordinate-frame expressions of the same range must satisfy:
+
+$$
+\lVert S_{camera}\rVert
+=
+\lVert S_{world}-C_{world}\rVert
+$$
+
+The final column is the coordinate-frame closure error:
+
+$$
+e_{closure}=
+\left|
+\lVert S_{camera}\rVert-
+\lVert S_{world}-C_{world}\rVert
+\right|
+$$
+
+| Target · post-detection GUI label | Pixel `(u,v)` | `S_camera` XYZ (m) | `S_world` XYZ (m) | Camera range (m) | World range (m) | Closure error (mm) |
+|---|---:|---|---|---:|---:|---:|
+| T1 · `phase5_sphere_00_red` | `(574,401)` | `(0.351, -0.222, 0.425)` | `(1.080, 0.012, 0.942)` | 0.594338 | 0.594338 | 0.000016 |
+| T2 · `phase5_cube_01_springgreen` | `(358,288)` | `(0.076, -0.096, 0.617)` | `(1.273, 0.288, 1.063)` | 0.628880 | 0.628880 | 0.000005 |
+| T3 · `phase5_sphere_02_rose` | `(471,190)` | `(0.437, 0.145, 0.890)` | `(1.553, -0.071, 1.300)` | 1.002391 | 1.002391 | 0.000006 |
+| T4 · `phase5_cube_03_yellow` | `(300,358)` | `(-0.081, -0.480, 1.252)` | `(1.899, 0.448, 0.667)` | 1.343311 | 1.343311 | 0.000010 |
+| T5 · `phase5_sphere_04_azure` | `(406,366)` | `(0.538, -0.788, 1.926)` | `(2.570, -0.168, 0.346)` | 2.149148 | 2.149148 | 0.000040 |
+| T6 · `phase5_cube_05_violet` | `(80,115)` | `(-1.573, 0.819, 2.017)` | `(2.681, 1.947, 1.947)` | 2.685410 | 2.685410 | 0.000039 |
+| T7 · `phase5_sphere_06_chartreuse` | `(332,100)` | `(0.108, 1.265, 2.781)` | `(3.463, 0.272, 2.381)` | 3.056607 | 3.056607 | 0.000032 |
+| T8 · `wall` | `(285,197)` | `(-0.377, 0.463, 3.317)` | `(3.981, 0.758, 1.568)` | 3.370186 | 3.370186 | 0.000023 |
+
+The maximum closure error is approximately `0.000040 mm`. This demonstrates
+numerical consistency between camera-space back-projection and runtime
+camera-to-world transformation. It is **not** a physical D455 depth-accuracy
+measurement. Target names in the table are attached only after depth detection
+for GUI checking; they do not participate in detection.
+
+### What is measured—and what is not
+
+- Axial depth is the representative pixel's Z-forward value. It is not the
+  oblique three-dimensional range unless the pixel lies on the optical axis.
+- Camera-to-surface range is the Euclidean distance to one visible surface
+  sample, never a distance to the hidden object center.
+- `surface_point_to_authored_center_m` is not sensor error. It includes sphere
+  radius or cube half-size, viewing direction, and representative-point
+  selection. A wall representative point is especially unsuitable for a
+  comparison with the center of the entire wall.
+- A true simulated surface-accuracy test would cast the representative camera
+  ray against the authored USD geometry and compare RTX depth with that visible
+  surface intersection. That independent surface oracle is not part of the
+  current release report.
+
 Depth discontinuities identify visible surface regions, not semantic object
-identity. Touching objects at nearly identical depth can merge, and reflective,
-transparent, or invalid-depth surfaces require a different sensor strategy.
-The reported representative point is a visible surface sample, never an inferred
-hidden object center.
+identity. Touching objects at nearly identical depth can merge, while one
+occluded object can split into multiple regions. Reflective, transparent, or
+invalid-depth surfaces require a different sensor or material-error strategy.
+The reported representative point is a repeatable visible surface sample, never
+an inferred hidden object center.
