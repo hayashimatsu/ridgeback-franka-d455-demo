@@ -153,32 +153,75 @@ demo_manifest.yaml
 ### Coordinate and distance result
 
 For capture `2026-0730-1`, the left camera world position is
-`C_world = (0.657637, 0.360578, 1.171612) m`. Each reported target provides one
-visible representative surface point in both camera coordinates
-`S_camera = (x_right, y_up, z_forward)` and world coordinates `S_world`.
-The two coordinate-frame expressions of the same range must satisfy:
+`C_world = (0.657637, 0.360578, 1.171612) m`. The report separates four
+positions that answer different questions:
+
+- `C_world`: runtime world position of the left camera optical center.
+- `S_camera`: measured representative surface point in camera right/up/forward
+  coordinates.
+- `S_world`: the same measured surface point transformed into world
+  coordinates using the runtime camera pose.
+- `U_world`: USD-authored world position of the object's center, attached only
+  after depth detection as a GUI/oracle reference.
+
+The camera directly measures a visible surface point. Its camera-to-surface
+range is:
+
 <br>
+
+```math
+D_{\text{surface}} = \Vert S_{\text{camera}} \Vert = \Vert S_{\text{world}} - C_{\text{world}} \Vert
+```
+
+<br>
+
+The camera-to-center range is an additional USD/GUI calculation, not a direct
+depth measurement:
+
+<br>
+
+```math
+D_{\text{center}} = \Vert U_{\text{world}} - C_{\text{world}} \Vert
+```
+
+<br>
+
+| Target · post-detection GUI label | `S_camera` measured surface XYZ (m) | `S_world` measured surface XYZ (m) | `D_surface` (m) | `U_world` USD center XYZ (m) | `D_center` (m) |
+|---|---|---|---:|---|---:|
+| T1 · red sphere | `(0.351, -0.222, 0.425)` | `(1.080, 0.012, 0.942)` | 0.594338 | `(1.091, 0.013, 0.942)` | 0.601265 |
+| T2 · spring-green cube | `(0.076, -0.096, 0.617)` | `(1.273, 0.288, 1.063)` | 0.628880 | `(1.303, 0.288, 1.063)` | 0.658382 |
+| T3 · rose sphere | `(0.437, 0.145, 0.890)` | `(1.553, -0.071, 1.300)` | 1.002391 | `(1.596, -0.078, 1.299)` | 1.043978 |
+| T4 · yellow cube | `(-0.081, -0.480, 1.252)` | `(1.899, 0.448, 0.667)` | 1.343311 | `(1.975, 0.445, 0.658)` | 1.416179 |
+| T5 · azure sphere | `(0.538, -0.788, 1.926)` | `(2.570, -0.168, 0.346)` | 2.149148 | `(2.596, -0.160, 0.354)` | 2.167250 |
+| T6 · violet cube | `(-1.573, 0.819, 2.017)` | `(2.681, 1.947, 1.947)` | 2.685410 | `(2.731, 1.931, 1.934)` | 2.709834 |
+| T7 · chartreuse sphere | `(0.108, 1.265, 2.781)` | `(3.463, 0.272, 2.381)` | 3.056607 | `(3.530, 0.265, 2.366)` | 3.112675 |
+| T8 · wall | `(-0.377, 0.463, 3.317)` | `(3.981, 0.758, 1.568)` | 3.370186 | `(4.030, 0.725, 1.500)` | 3.408238 |
+
+`D_surface` and `D_center` deliberately differ: one ends at the visible surface
+sample and the other ends at the authored object center. Their difference is
+not camera error; it also contains object radius or half-size, viewing
+direction, and representative-point selection.
+
+The coordinate transform itself is checked by comparing the two expressions
+of the same surface range:
+
+<br>
+
 ```math
 \Vert S_{\text{camera}} \Vert = \Vert S_{\text{world}} - C_{\text{world}} \Vert
 ```
+
 <br>
-The final column is the coordinate-frame closure error:
+
+The coordinate-frame closure error is:
+
+<br>
 
 ```math
 e_{\text{closure}} = \left| \Vert S_{\text{camera}} \Vert - \Vert S_{\text{world}} - C_{\text{world}} \Vert \right|
 ```
-<br>
 
-| Target · post-detection GUI label | Pixel `(u,v)` | `S_camera` XYZ (m) | `S_world` XYZ (m) | Camera range (m) | World range (m) | Closure error (mm) |
-|---|---:|---|---|---:|---:|---:|
-| T1 · `phase5_sphere_00_red` | `(574,401)` | `(0.351, -0.222, 0.425)` | `(1.080, 0.012, 0.942)` | 0.594338 | 0.594338 | 0.000016 |
-| T2 · `phase5_cube_01_springgreen` | `(358,288)` | `(0.076, -0.096, 0.617)` | `(1.273, 0.288, 1.063)` | 0.628880 | 0.628880 | 0.000005 |
-| T3 · `phase5_sphere_02_rose` | `(471,190)` | `(0.437, 0.145, 0.890)` | `(1.553, -0.071, 1.300)` | 1.002391 | 1.002391 | 0.000006 |
-| T4 · `phase5_cube_03_yellow` | `(300,358)` | `(-0.081, -0.480, 1.252)` | `(1.899, 0.448, 0.667)` | 1.343311 | 1.343311 | 0.000010 |
-| T5 · `phase5_sphere_04_azure` | `(406,366)` | `(0.538, -0.788, 1.926)` | `(2.570, -0.168, 0.346)` | 2.149148 | 2.149148 | 0.000040 |
-| T6 · `phase5_cube_05_violet` | `(80,115)` | `(-1.573, 0.819, 2.017)` | `(2.681, 1.947, 1.947)` | 2.685410 | 2.685410 | 0.000039 |
-| T7 · `phase5_sphere_06_chartreuse` | `(332,100)` | `(0.108, 1.265, 2.781)` | `(3.463, 0.272, 2.381)` | 3.056607 | 3.056607 | 0.000032 |
-| T8 · `wall` | `(285,197)` | `(-0.377, 0.463, 3.317)` | `(3.981, 0.758, 1.568)` | 3.370186 | 3.370186 | 0.000023 |
+<br>
 
 The maximum closure error is approximately `0.000040 mm`. This demonstrates
 numerical consistency between camera-space back-projection and runtime
