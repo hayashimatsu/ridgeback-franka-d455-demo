@@ -1,23 +1,13 @@
 # Ridgeback + Franka Panda + D455 GUI Demo
+| Complete simulated workspace and measurement targets. | D455 stereo camera mounted above the Panda hand. |
+|---|---|
+| ![demo-enviroment](demo1.png) | ![demo-D455 stereo camera](demo2.png) |
 
-<p align="center">
-  <img src="demo1.png" width="49%" alt="Isaac Sim scene with Ridgeback, Franka Panda, wall, and measurement targets">
-  <img src="demo2.png" width="49%" alt="Close view of the wrist-mounted Intel RealSense D455 model">
-</p>
-
-<p align="center">
-  <sub><strong>Left:</strong> complete simulated workspace and measurement targets. <strong>Right:</strong> D455 stereo camera mounted above the Panda hand.</sub>
-</p>
 
 <p align="center">
   <strong>Drag an IK target, aim a wrist-mounted stereo camera, and capture auditable RGB + depth measurements in Isaac Sim.</strong>
 </p>
 
-<p align="center">
-  <img alt="Isaac Sim 6.0" src="https://img.shields.io/badge/Isaac%20Sim-6.0-76B900">
-  <img alt="GUI demo" src="https://img.shields.io/badge/workflow-GUI%20demo-2563EB">
-  <img alt="capture status" src="https://img.shields.io/badge/capture-2026--0730--1%20PASS-16A34A">
-</p>
 
 ## Demo result
 
